@@ -57,14 +57,14 @@ function ProfileTab() {
       <div>
         <Reveal>
           <h2 className="font-display text-3xl leading-snug text-neutral-900 md:text-[40px]">
-            做产品、做影像、做培训，<br />
+            做产品、做影像、做培训与 IP，<br />
             <span className="text-[#b07d3c]">让 AI 用进真实生意里。</span>
           </h2>
         </Reveal>
         <Reveal delay={80}>
           <div className="mt-8 space-y-5 text-[15px] leading-8 text-neutral-700">
             <p>{profile.intro}</p>
-            <p>我的工作围绕三件事展开：<b className="text-neutral-900">AI 产品交付</b>——走进门店和工厂，把一个具体问题做成能用、能交接的 AI 系统，累计交付 10+ 个；<b className="text-neutral-900">AI 影像</b>——为品牌、文旅与公共文化机构制作 AI 影片；<b className="text-neutral-900">企业 AI 培训</b>——给管理层和一线团队上能直接用的 AI 实战课，并把老板 / 门店 IP 孵化做成能持续获客的内容流程。</p>
+            <p>我的工作围绕三件事展开：<b className="text-neutral-900">AI 产品交付</b>——走进门店和工厂，把一个具体问题做成能用、能交接的 AI 系统，累计交付 10+ 个；<b className="text-neutral-900">AI 影像</b>——为品牌、文旅与公共文化机构制作 AI 影片；<b className="text-neutral-900">AI 培训与 IP 孵化</b>——同一个板块里两条并列的业务线：一边让管理层和一线团队学会用 AI，一边帮老板 / 门店把真本事做成持续获客的内容与自有客源。</p>
             <p>不是向企业卖 AI，而是先帮企业找到一个足够具体的问题，从一个部门、一个工作流、一个工具开始。</p>
           </div>
         </Reveal>

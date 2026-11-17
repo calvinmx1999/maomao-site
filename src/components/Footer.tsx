@@ -50,7 +50,7 @@ export default function Footer() {
             <div>
               <p className="text-[13px] font-medium uppercase tracking-[0.18em] text-neutral-400">站内导航</p>
               <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-[15px]">
-                {[["个人简介", "/about/profile"], ["履历", "/about/resume"], ["能力栈", "/about/skills"], ["AI 产品交付", "/work/fde"], ["AI 影像", "/work/video"], ["企业 AI 培训", "/work/training"], ["工作方法", "/method"]].map(([l, h]) => (
+                {[["个人简介", "/about/profile"], ["履历", "/about/resume"], ["能力栈", "/about/skills"], ["AI 产品交付", "/work/fde"], ["AI 影像", "/work/video"], ["AI 培训与 IP 孵化", "/work/training"], ["工作方法", "/method"]].map(([l, h]) => (
                   <Link key={h} to={h} className="w-fit text-neutral-600 transition-colors hover:text-neutral-900">{l}</Link>
                 ))}
               </div>

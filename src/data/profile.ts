@@ -10,7 +10,7 @@ export const profile = {
   wechat: "Calvinmx99",
   photo: "/images/maoxiang.jpg",
   intro:
-    "北京大学硕士，连续创业者、AI 导演、AI 产品经理。主导过宝马中国、清华大学、中国建筑、敦煌文旅等 30 余家商业和公共文化机构的 AI 影像与数字化项目；现在专注于把 AI 落地进传统行业——做产品、做影像、做培训。",
+    "北京大学硕士，连续创业者、AI 导演、AI 产品经理。主导过宝马中国、清华大学、中国建筑、敦煌文旅等 30 余家商业和公共文化机构的 AI 影像与数字化项目；现在专注于把 AI 落地进传统行业——做产品、做影像、做培训与 IP 孵化。",
 };
 
 /** 一级标签「关于我」下的二级标签 */
@@ -36,7 +36,7 @@ export const timeline: TimelineItem[] = [
     time: "持续创业中",
     title: "AI 产品经理",
     org: "连续创业者",
-    desc: "为传统企业交付 AI 产品与系统，并提供 AI 影像制作和企业 AI 培训。",
+    desc: "为传统企业交付 AI 产品与系统，并提供 AI 影像制作、AI 培训与 IP 孵化。",
     kind: "创业",
     current: true,
   },
@@ -84,11 +84,11 @@ export const businesses = [
   },
   {
     no: "03",
-    en: "AI Training",
-    title: "企业 AI 培训",
-    desc: "管理层工作坊、岗位实战营、落地陪跑，加老板 / 门店 IP 孵化。内部降本、外部获客，能力留在自己手里。",
+    en: "AI Training & IP",
+    title: "AI 培训与 IP 孵化",
+    desc: "两条并列业务线：AI 培训让团队会用 AI，IP 孵化让老板 / 门店拿到自有客源。可单独合作，也可组合推进。",
     to: "/work/training",
-    cta: "看培训与 IP 孵化",
+    cta: "看两条业务线",
   },
 ];
 
@@ -116,12 +116,13 @@ export const skillGroups = [
   },
   {
     no: "03",
-    en: "Training",
-    title: "企业 AI 培训",
+    en: "Training & IP",
+    title: "AI 培训与 IP 孵化",
     items: [
       { b: "课程设计", s: "按行业与岗位定制，零基础可上手" },
       { b: "实战带教", s: "现场人人出图、出稿，当堂点评迭代" },
-      { b: "SOP 固化", s: "培训内容沉淀为团队每天可复用的流程" },
+      { b: "IP 定位与内容", s: "访谈挖底、账号定位、脚本与内容生产" },
+      { b: "SOP 固化", s: "模板与流程交回团队，自己接着跑" },
     ],
   },
 ];

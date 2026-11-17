@@ -15,7 +15,7 @@ export function WorkHeader({ title, desc }: { title: string; desc: string }) {
         items={[
           { to: "/work/fde", label: "AI 产品交付" },
           { to: "/work/video", label: "AI 影像" },
-          { to: "/work/training", label: "企业 AI 培训" },
+          { to: "/work/training", label: "AI 培训与 IP 孵化" },
         ]}
       />
     </>

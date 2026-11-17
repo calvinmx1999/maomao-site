@@ -7,7 +7,7 @@ import ProjectCard from "../components/ProjectCard";
 import VideoModal, { type ModalVideo } from "../components/VideoModal";
 import { projects } from "../data/projects";
 import { profile, timeline, businesses } from "../data/profile";
-import { featuredCourse } from "../data/training";
+import { businessLines, featuredCourse, ipIncubation } from "../data/training";
 import { videos } from "../data/videos";
 import { usePageMeta } from "../hooks/usePageMeta";
 
@@ -19,7 +19,7 @@ const STATS = [
 ];
 
 export default function Home() {
-  usePageMeta("AI 产品经理 · AI 导演", "毛翔，北京大学硕士，连续创业者、AI 导演、AI 产品经理。三大业务：AI 产品交付、AI 影像、企业 AI 培训。");
+  usePageMeta("AI 产品经理 · AI 导演", "毛翔，北京大学硕士，连续创业者、AI 导演、AI 产品经理。三大业务：AI 产品交付、AI 影像、AI 培训与 IP 孵化。");
   const [video, setVideo] = useState<ModalVideo | null>(null);
   const heroFilms = ["dunhuang-promise", "changshana"].map((s) => videos.find((v) => v.slug === s)!);
 
@@ -111,7 +111,7 @@ export default function Home() {
       {/* ───────── 三大业务 ───────── */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-5 md:px-8">
-          <SectionHead eyebrow="What I Do" title="三大业务" desc="做产品、做影像、做培训——三件事都围绕同一个目标：让 AI 真正用进传统行业的日常经营里。" center />
+          <SectionHead eyebrow="What I Do" title="三大业务" desc="做产品、做影像、做培训与 IP——都围绕同一个目标：让 AI 真正用进传统行业的日常经营里。" center />
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {businesses.map((b, i) => (
               <Reveal key={b.no} delay={i * 80}>
@@ -168,24 +168,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────── 企业 AI 培训 ───────── */}
+      {/* ───────── AI 培训与 IP 孵化 ───────── */}
       <section className="py-20 md:py-28">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:px-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:px-8 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
-            <SectionHead eyebrow="AI Training" title="企业 AI 培训" desc={`从管理层工作坊、岗位实战营，到老板 / 门店 IP 孵化：${featuredCourse.client}「${featuredCourse.title}」是代表案例。零基础上手，学完当天就能出图、发圈。`} />
+            <SectionHead eyebrow="AI Training & IP" title="AI 培训与 IP 孵化" desc="一个板块里两条并列的业务线：AI 培训让团队会用 AI，IP 孵化让老板 / 门店拿到自有客源。可单独合作，也可组合推进。" />
             <Reveal delay={100}>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {featuredCourse.modules.map((m) => <span key={m.t} className="rounded-full bg-[#f3ede1] px-3 py-1 text-[12px] font-medium text-[#8a6d3f]">{m.t}</span>)}
-                <span className="rounded-full bg-neutral-900 px-3 py-1 text-[12px] font-medium text-[#d6b278]">老板 IP 孵化</span>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {businessLines.map((b) => (
+                  <div key={b.no} className="h-full rounded-2xl border border-black/[0.07] bg-white px-5 py-5">
+                    <p className="text-[12px] uppercase tracking-[0.18em] text-neutral-400"><span className="font-display mr-2 text-xl text-[#b07d3c]">{b.no}</span>{b.en}</p>
+                    <p className="mt-2 text-[16px] font-semibold text-neutral-900">{b.title}</p>
+                    <p className="mt-1 text-[13px] leading-6 text-neutral-600">{b.lead}</p>
+                  </div>
+                ))}
               </div>
-              <Link to="/work/training" className="group mt-8 inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-neutral-700">看培训与 IP 孵化 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
+              <p className="mt-5 text-[13.5px] leading-7 text-neutral-500">培训代表案例：{featuredCourse.client}「{featuredCourse.title}」；IP 孵化案例仍在积累中，完整方案可约时间细聊。</p>
+              <Link to="/work/training" className="group mt-7 inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-neutral-700">看两条业务线 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
             </Reveal>
           </div>
           <Reveal delay={80}>
             <div className="grid grid-cols-2 gap-4">
-              {featuredCourse.slides.slice(0, 4).map((sl) => (
+              {featuredCourse.slides.slice(0, 3).map((sl) => (
                 <img key={sl.src} src={sl.src} alt={sl.caption} width={960} height={540} loading="lazy" className="aspect-video w-full rounded-2xl border border-black/[0.07] object-cover" />
               ))}
+              <img src={ipIncubation.shot.src} alt={ipIncubation.shot.caption} width={1440} height={900} loading="lazy" className="aspect-video w-full rounded-2xl border border-black/[0.07] object-cover object-top" />
             </div>
           </Reveal>
         </div>
@@ -205,7 +212,7 @@ export default function Home() {
       <section className="py-20 md:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <SectionHead eyebrow="Path" title="从北大毕业，到传统行业AI落地。" desc="从 AI 影像出发，走到 AI 产品与企业培训。每一步都在做同一件事：把新技术用进真实业务里。" />
+            <SectionHead eyebrow="Path" title="从北大毕业，到传统行业AI落地。" desc="从 AI 影像出发，走到 AI 产品、AI 培训与 IP 孵化。每一步都在做同一件事：把新技术用进真实业务里。" />
             <Reveal delay={100}><Link to="/about/resume" className="group mt-8 inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-neutral-700">完整履历 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link></Reveal>
           </div>
           <Reveal delay={80}>
