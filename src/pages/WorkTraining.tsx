@@ -23,10 +23,11 @@ export default function WorkTraining() {
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {trainingTracks.map((t, i) => (
             <Reveal key={t.no} delay={i * 80}>
-              <div className="h-full rounded-[28px] border border-black/[0.07] bg-white p-7">
+              <div className="flex h-full flex-col rounded-[28px] border border-black/[0.07] bg-white p-7">
                 <span className="font-display text-3xl text-[#d6b278]">{t.no}</span>
                 <h3 className="mt-4 text-[18px] font-semibold text-neutral-900">{t.title}</h3>
-                <p className="mt-3 text-[14px] leading-7 text-neutral-600">{t.desc}</p>
+                {/* flex-1 让标签行统一贴底，避免各卡片标签高低不齐 */}
+                <p className="mt-3 flex-1 text-[14px] leading-7 text-neutral-600">{t.desc}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {t.items.map((it) => (
                     <span key={it} className="rounded-full bg-[#f3ede1] px-3 py-1 text-[12px] font-medium text-[#8a6d3f]">{it}</span>
@@ -72,7 +73,8 @@ export default function WorkTraining() {
                   <div className="overflow-hidden rounded-2xl border border-black/[0.07] bg-neutral-100">
                     <img src={s.src} alt={s.caption} loading="lazy" width={960} height={540} className="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
                   </div>
-                  <p className="mt-3 text-[13px] text-neutral-600">{s.caption}</p>
+                  {/* 固定两行高度，长短不同的图注不会把卡片底部撑得高低不齐 */}
+                  <p className="mt-3 line-clamp-2 min-h-[2.5rem] text-[13px] leading-5 text-neutral-600">{s.caption}</p>
                 </button>
               </Reveal>
             ))}

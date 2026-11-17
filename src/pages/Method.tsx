@@ -39,11 +39,13 @@ export default function Method() {
       <section className="mx-auto max-w-6xl px-5 py-12 md:px-8">
         <div className="grid overflow-hidden rounded-[32px] border border-black/[0.07] bg-white shadow-[0_18px_50px_rgba(40,32,20,0.06)] md:grid-cols-5">
           {STEPS.map((s, i) => (
-            <Reveal key={s.no} delay={i * 60} className={`px-6 py-8 ${i > 0 ? "border-t border-black/[0.07] md:border-l md:border-t-0" : ""}`}>
+            <Reveal key={s.no} delay={i * 60} className={`flex h-full flex-col px-6 py-8 ${i > 0 ? "border-t border-black/[0.07] md:border-l md:border-t-0" : ""}`}>
               <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-neutral-400"><span className="font-display text-3xl leading-none text-[#e5d9c3]">{s.no}</span>{s.en}</div>
               <h3 className="mt-4 text-[19px] font-semibold text-neutral-900">{s.title}</h3>
-              <p className="mt-2.5 text-[13.5px] leading-7 text-neutral-600">{s.desc}</p>
-              <p className="mt-5 border-t border-black/[0.07] pt-3 text-[12px] font-medium text-[#8a6d3f]">产出：{s.out}</p>
+              {/* flex-1 吃掉多余高度，让各列的「产出」统一贴底对齐 */}
+              <p className="mt-2.5 flex-1 text-[13.5px] leading-7 text-neutral-600">{s.desc}</p>
+              {/* 预留两行高度：最长的「操作手册 · 培训 · 交接清单」换行时，其余列也保持同一区块高度 */}
+              <p className="mt-5 min-h-[2.75rem] border-t border-black/[0.07] pt-3 text-[12px] font-medium leading-5 text-[#8a6d3f]">产出：{s.out}</p>
             </Reveal>
           ))}
         </div>
