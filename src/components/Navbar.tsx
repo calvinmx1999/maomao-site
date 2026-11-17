@@ -25,7 +25,7 @@ export const NAV = [
     children: [
       { label: "AI 产品交付", to: "/work/fde", desc: "10+ 个落地的 AI 产品与系统" },
       { label: "AI 影像", to: "/work/video", desc: "品牌、文旅与公共文化影片" },
-      { label: "企业 AI 培训", to: "/work/training", desc: "管理层工作坊 · 岗位实战营" },
+      { label: "企业 AI 培训", to: "/work/training", desc: "管理层工作坊 · 岗位实战营 · 老板 IP 孵化" },
     ],
   },
   { label: "工作方法", to: "/method" },

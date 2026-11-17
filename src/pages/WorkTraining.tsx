@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 import Reveal from "../components/Reveal";
-import { trainingTracks, featuredCourse } from "../data/training";
+import { ShotFrame } from "../components/ProjectCard";
+import { trainingTracks, featuredCourse, ipIncubation } from "../data/training";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { WorkHeader } from "./WorkShared";
 
 export default function WorkTraining() {
-  usePageMeta("企业 AI 培训", "面向管理层与一线岗位的企业 AI 培训与落地陪跑，代表案例：圣象地板经销商 AI 获客实战营。");
+  usePageMeta("企业 AI 培训", "管理层工作坊、岗位实战营、落地陪跑，加老板 / 门店 IP 孵化。代表案例：圣象地板经销商 AI 获客实战营。");
   const [zoom, setZoom] = useState<string | null>(null);
   const c = featuredCourse;
+  const ip = ipIncubation;
 
   return (
     <>
-      <WorkHeader title="作品集" desc="企业 AI 转型与组织赋能：从管理层认知，到岗位实战，再到落地陪跑。不讲空概念，学完回去就能用。" />
+      <WorkHeader title="作品集" desc="企业 AI 转型与组织赋能：管理层工作坊、岗位实战营、落地陪跑，加老板 / 门店 IP 孵化。内部把成本降下来，外部把客源拉上来，做成一套团队自己能跑的能力。" />
 
       {/* 三类培训 */}
       <section className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
@@ -80,14 +82,67 @@ export default function WorkTraining() {
             ))}
           </div>
 
+        </div>
+      </section>
+
+      {/* 老板 / 门店 IP 孵化：与培训合成一个业务板块 */}
+      <section className="border-t border-black/[0.06] bg-[#fafaf7]">
+        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+          <Reveal>
+            <p className="text-[13px] font-medium uppercase tracking-[0.2em] text-[#b07d3c]">{ip.no} · {ip.en}</p>
+            <h2 className="font-display mt-3 text-3xl text-neutral-900 md:text-[42px] md:leading-tight">{ip.title}</h2>
+            <p className="mt-4 max-w-3xl text-[15px] leading-8 text-neutral-600">{ip.intro}</p>
+          </Reveal>
+
+          {/* 一条线：课上学会 → 做出内容 → 留在手里 */}
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {ip.bridge.map((b, i) => (
+              <Reveal key={b.t} delay={i * 70}>
+                <div className="flex h-full items-start gap-3 rounded-2xl border border-black/[0.07] bg-white p-5">
+                  <span className="font-display text-2xl leading-none text-[#d6b278]">0{i + 1}</span>
+                  <div>
+                    <p className="text-[15px] font-semibold text-neutral-900">{b.t}</p>
+                    <p className="mt-1.5 text-[13px] leading-6 text-neutral-600">{b.d}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-10 grid items-center gap-10 lg:grid-cols-[1fr_1.05fr]">
+            <div>
+              <div className="grid grid-cols-2 gap-4">
+                {ip.metrics.map((m) => (
+                  <div key={m.d} className="rounded-2xl border border-black/[0.07] bg-white px-5 py-6">
+                    <p className="font-display text-2xl text-neutral-900">{m.v}</p>
+                    <p className="mt-1.5 text-[12.5px] leading-5 text-neutral-500">{m.d}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {ip.flow.map((f, i) => (
+                  <span key={f} className="inline-flex items-center gap-1.5 rounded-full bg-[#f3ede1] px-3 py-1 text-[12px] font-medium text-[#8a6d3f]">
+                    {i > 0 && <span className="text-[#b07d3c]">→</span>}{f}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <Reveal delay={80}>
+              <figure className="overflow-hidden rounded-[24px] border border-black/[0.07] bg-white shadow-[0_18px_50px_rgba(40,32,20,0.06)]">
+                <ShotFrame src={ip.shot.src} alt={ip.shot.caption} />
+                <figcaption className="border-t border-black/[0.06] px-5 py-3 text-[13px] text-neutral-500">{ip.shot.caption}</figcaption>
+              </figure>
+            </Reveal>
+          </div>
+
           <Reveal>
             <div className="mt-14 flex flex-col items-start justify-between gap-4 rounded-[28px] bg-neutral-900 p-8 text-white md:flex-row md:items-center">
               <div>
-                <p className="text-[18px] font-semibold">想给团队办一场类似的培训？</p>
-                <p className="mt-1.5 text-[14px] text-white/60">课程可按行业、岗位和时长定制，线上线下均可。</p>
+                <p className="text-[18px] font-semibold">想给团队办一场培训，或者把老板 IP 做起来？</p>
+                <p className="mt-1.5 text-[14px] text-white/60">课程可按行业、岗位和时长定制；IP 孵化按品类切换，线上线下均可。</p>
               </div>
               <a href="#contact" className="inline-flex items-center gap-1.5 rounded-full bg-[#d6b278] px-5 py-2.5 text-sm font-semibold text-neutral-900 transition-colors hover:bg-[#e5c58f]">
-                聊聊培训需求 <ArrowUpRight className="h-4 w-4" />
+                聊聊需求 <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>
           </Reveal>

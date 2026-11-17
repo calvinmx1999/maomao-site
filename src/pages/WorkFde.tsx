@@ -9,7 +9,7 @@ import { WorkHeader } from "./WorkShared";
 type Ind = (typeof industries)[number];
 
 export default function WorkFde() {
-  usePageMeta("AI 产品交付", "门窗报价系统、财务派单工作台、建材老板 IP 孵化、AI Score 商超巡检、销冠副驾销售智能体。");
+  usePageMeta("AI 产品交付", "门窗报价系统、财务派单工作台、AI Score 商超巡检、销冠副驾销售智能体。");
   const [ind, setInd] = useState<Ind>("全部");
   const list = ind === "全部" ? projects : projects.filter((p) => p.industry === ind);
   const counts = Object.fromEntries(industries.map((k) => [k, k === "全部" ? projects.length : projects.filter((p) => p.industry === k).length])) as Record<Ind, number>;

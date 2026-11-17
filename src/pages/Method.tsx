@@ -33,7 +33,7 @@ const FIT = [
   },
   {
     t: "不太适合",
-    lead: "",
+    lead: "只搞概念包装，职责边界不清",
     items: [
       "只想做个「AI 概念」撑门面宣传，不打算落进真实业务",
       "需求还没理清，就想一口价定死总价",
@@ -101,7 +101,7 @@ export default function Method() {
                   <h3 className={`text-xl font-semibold ${i === 0 ? "text-neutral-900" : "text-white"}`}>{f.t}</h3>
                   {/* 导语区固定高度：两张卡的第一条列表项从同一水平线开始 */}
                   <div className="mt-3 min-h-[2rem]">
-                    {f.lead && <p className="text-[14px] font-medium leading-7 text-[#8a6d3f]">{f.lead}</p>}
+                    {f.lead && <p className={`text-[14px] font-medium leading-7 ${i === 0 ? "text-[#8a6d3f]" : "text-[#d6b278]"}`}>{f.lead}</p>}
                   </div>
                   <ul className="mt-4 space-y-3">
                     {f.items.map((x) => (

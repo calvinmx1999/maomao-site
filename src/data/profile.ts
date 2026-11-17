@@ -43,7 +43,7 @@ export const timeline: TimelineItem[] = [
   {
     time: "2024 — 至今",
     title: "AI 导演",
-    org: "商业及公益 AI 影像项目",
+    org: "商业及文化 AI 影像项目",
     desc: "《我和敦煌有个约定》《跟着熊出没去旅行·哈密篇》等，主导项目累计全网曝光过亿。",
     kind: "影像",
     current: true,
@@ -86,9 +86,9 @@ export const businesses = [
     no: "03",
     en: "AI Training",
     title: "企业 AI 培训",
-    desc: "管理层工作坊、岗位提效实战营与落地陪跑。不讲概念，从岗位真实任务出发。",
+    desc: "管理层工作坊、岗位实战营、落地陪跑，加老板 / 门店 IP 孵化。内部降本、外部获客，能力留在自己手里。",
     to: "/work/training",
-    cta: "看培训案例",
+    cta: "看培训与 IP 孵化",
   },
 ];
 

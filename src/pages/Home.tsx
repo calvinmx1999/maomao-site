@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { ArrowRight, ArrowUpRight, MapPin, Play } from "lucide-react";
 import Reveal from "../components/Reveal";
 import SectionHead from "../components/SectionHead";
-import ProjectCard, { ShotFrame } from "../components/ProjectCard";
+import ProjectCard from "../components/ProjectCard";
 import VideoModal, { type ModalVideo } from "../components/VideoModal";
 import { projects } from "../data/projects";
 import { profile, timeline, businesses } from "../data/profile";
@@ -21,7 +21,7 @@ const STATS = [
 export default function Home() {
   usePageMeta("AI 产品经理 · AI 导演", "毛翔，北京大学硕士，连续创业者、AI 导演、AI 产品经理。三大业务：AI 产品交付、AI 影像、企业 AI 培训。");
   const [video, setVideo] = useState<ModalVideo | null>(null);
-  const [a, b, c] = [projects[0], projects[1], projects[4]];
+  const heroFilms = ["dunhuang-promise", "changshana"].map((s) => videos.find((v) => v.slug === s)!);
 
   return (
     <>
@@ -64,15 +64,19 @@ export default function Home() {
                 <p className="mt-0.5 text-[13px] text-white/80">{profile.title}</p>
               </div>
             </div>
-            <div className="float-card absolute -left-10 top-10 hidden w-48 overflow-hidden rounded-xl border border-black/[0.08] shadow-[0_18px_45px_-18px_rgba(0,0,0,0.35)] sm:block" style={{ ["--r" as string]: "-6deg" }}>
-              <ShotFrame src={a.shots[0].src} alt={a.title} />
-            </div>
-            <div className="float-card absolute -right-8 top-1/3 hidden w-44 overflow-hidden rounded-xl border border-black/[0.08] shadow-[0_18px_45px_-18px_rgba(0,0,0,0.35)] sm:block" style={{ ["--r" as string]: "5deg", animationDelay: "1.5s" }}>
-              <ShotFrame src={b.shots[0].src} alt={b.title} />
-            </div>
-            <div className="float-card absolute -bottom-8 -left-6 hidden w-44 overflow-hidden rounded-xl border border-black/[0.08] shadow-[0_18px_45px_-18px_rgba(0,0,0,0.35)] sm:block" style={{ ["--r" as string]: "4deg", animationDelay: "3s" }}>
-              <ShotFrame src={c.shots[0].src} alt={c.title} />
-            </div>
+            {heroFilms.map((v, i) => (
+              <button
+                key={v.slug}
+                type="button"
+                onClick={() => setVideo({ mid: v.mid, aid: v.aid, title: v.title, client: v.client })}
+                aria-label={`播放：${v.title}`}
+                className={`float-card absolute hidden w-52 overflow-hidden rounded-xl border border-black/[0.08] bg-white shadow-[0_18px_45px_-18px_rgba(0,0,0,0.35)] sm:block ${i === 0 ? "-left-10 top-10" : "-right-10 bottom-12"}`}
+                style={{ ["--r" as string]: i === 0 ? "-6deg" : "5deg", animationDelay: `${i * 1.5}s` }}
+              >
+                <img src={v.img} alt={v.title} width={640} height={360} className="aspect-video block w-full object-cover" />
+                <span className="absolute bottom-2 left-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/90 shadow-md"><Play className="ml-0.5 h-3 w-3 fill-current text-neutral-900" /></span>
+              </button>
+            ))}
           </div>
         </div>
 
@@ -168,12 +172,13 @@ export default function Home() {
       <section className="py-20 md:py-28">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:px-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <SectionHead eyebrow="AI Training" title="企业 AI 培训" desc={`代表案例：${featuredCourse.client}「${featuredCourse.title}」。面向经销商与门店团队，零基础上手，学完当天就能出图、发圈。`} />
+            <SectionHead eyebrow="AI Training" title="企业 AI 培训" desc={`从管理层工作坊、岗位实战营，到老板 / 门店 IP 孵化：${featuredCourse.client}「${featuredCourse.title}」是代表案例。零基础上手，学完当天就能出图、发圈。`} />
             <Reveal delay={100}>
               <div className="mt-6 flex flex-wrap gap-2">
                 {featuredCourse.modules.map((m) => <span key={m.t} className="rounded-full bg-[#f3ede1] px-3 py-1 text-[12px] font-medium text-[#8a6d3f]">{m.t}</span>)}
+                <span className="rounded-full bg-neutral-900 px-3 py-1 text-[12px] font-medium text-[#d6b278]">老板 IP 孵化</span>
               </div>
-              <Link to="/work/training" className="group mt-8 inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-neutral-700">看培训案例 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
+              <Link to="/work/training" className="group mt-8 inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-neutral-700">看培训与 IP 孵化 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
             </Reveal>
           </div>
           <Reveal delay={80}>
