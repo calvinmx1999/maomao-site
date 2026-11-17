@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background-color: #fafaf7;
+    color: #161616;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  :focus-visible { outline: 2px solid #b07d3c; outline-offset: 3px; border-radius: 6px; }
+}
+
+.font-display { letter-spacing: -0.035em; font-weight: 650; }
+
+/* 滚动渐显 */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.22,1,.36,1); will-change: opacity, transform; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* 导航下划线 */
+.nav-link { position: relative; }
+.nav-link::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 100%; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.nav-link:hover::after, .nav-link.is-active::after { transform: scaleX(1); transform-origin: left; }
+
+/* 作品卡 hover */
+.work-card img { transition: transform .9s cubic-bezier(.22,1,.36,1); }
+.work-card:hover img { transform: scale(1.04); }
+.work-card .work-arrow { transition: transform .45s cubic-bezier(.22,1,.36,1), background-color .3s, color .3s; }
+.work-card:hover .work-arrow { transform: translate(4px,-4px); background: #161616; color: #fff; }
+
+/* 在线状态点 */
+@keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 0 rgba(22,163,74,.45); } 60% { box-shadow: 0 0 0 7px rgba(22,163,74,0); } }
+.pulse-dot { animation: pulse-dot 2s infinite; }
+
+/* 结尾词循环翻转 */
+.flip-stack { display: inline-grid; vertical-align: baseline; }
+.flip-stack > span { grid-area: 1/1; opacity: 0; transform: translateY(55%); animation: flip-swap 7.5s cubic-bezier(.22,1,.36,1) infinite; animation-play-state: paused; }
+.flip-stack.flip-running > span { animation-play-state: running; }
+.flip-stack > span:nth-child(2) { animation-delay: 2.5s; }
+.flip-stack > span:nth-child(3) { animation-delay: 5s; }
+@keyframes flip-swap { 0% { opacity: 0; transform: translateY(-55%); } 6%,30% { opacity: 1; transform: none; } 36%,100% { opacity: 0; transform: translateY(55%); } }
+
+/* 横向滚动标签条隐藏滚动条 */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* 浮动卡片轻微漂浮 */
+@keyframes float-y { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-8px) rotate(var(--r,0deg)); } }
+.float-card { animation: float-y 6s ease-in-out infinite; }
