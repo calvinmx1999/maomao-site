@@ -20,8 +20,33 @@ const RULES = [
 ];
 
 const FIT = [
-  { t: "适合找我", items: ["传统企业，想用 AI 但不知道从哪开始", "有一个具体的、重复的、靠人工的环节", "老板愿意花半天讲清楚业务", "希望团队最终能自己用起来"] },
-  { t: "不太适合", items: ["只想要一个“AI 概念”做宣传", "需求还没想清楚就要定总价", "需要大型 ERP 级别的系统替换"] },
+  {
+    t: "适合找我",
+    lead: "先把成本降下来，再把客源引进来：",
+    items: [
+      "最想先把成本降下来",
+      "制造 / 零售 / 餐饮，有具体人工环节可以先试点",
+      "想做线上获客，但不会做账号、没精力做内容",
+      "老板愿意花半天讲清业务和客群",
+      "希望能力最终留在自己手里",
+    ],
+  },
+  {
+    t: "不太适合",
+    lead: "",
+    items: [
+      "只想做个「AI 概念」撑门面宣传，不打算落进真实业务",
+      "需求还没理清，就想一口价定死总价",
+      "需要整体替换大型 ERP 级别的核心业务系统",
+      "只想靠投广告买流量，不愿做长期 IP 和自有客源",
+    ],
+  },
+];
+
+const EFFECTS = [
+  { no: "01", label: "降本", desc: "重复工作交给 AI，省工时、减用工、降差错；先试点验证效果，再决定投入" },
+  { no: "02", label: "获客", desc: "帮你做老板 / 门店 IP，持续产出内容、沉淀自有客源，不靠一次性投流" },
+  { no: "03", label: "双轮推进", desc: "内部把成本压下来，外部把客源拉上来，投入产出算得清" },
 ];
 
 export default function Method() {
@@ -68,20 +93,52 @@ export default function Method() {
       </section>
 
       <section className="bg-neutral-900 py-16 md:py-20">
-        <div className="mx-auto grid max-w-6xl gap-6 px-5 md:grid-cols-2 md:px-8">
-          {FIT.map((f, i) => (
-            <Reveal key={f.t} delay={i * 80}>
-              <div className={`h-full rounded-3xl p-8 ${i === 0 ? "bg-white" : "border border-white/10"}`}>
-                <h3 className={`text-xl font-semibold ${i === 0 ? "text-neutral-900" : "text-white"}`}>{f.t}</h3>
-                <ul className="mt-5 space-y-3">
-                  {f.items.map((x) => <li key={x} className={`flex gap-3 text-[15px] leading-7 ${i === 0 ? "text-neutral-700" : "text-neutral-300"}`}><span className={i === 0 ? "text-[#b07d3c]" : "text-neutral-500"}>{i === 0 ? "✓" : "—"}</span>{x}</li>)}
-                </ul>
-              </div>
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="grid gap-6 md:grid-cols-2">
+            {FIT.map((f, i) => (
+              <Reveal key={f.t} delay={i * 80}>
+                <div className={`flex h-full flex-col rounded-3xl p-8 ${i === 0 ? "bg-white" : "border border-white/10"}`}>
+                  <h3 className={`text-xl font-semibold ${i === 0 ? "text-neutral-900" : "text-white"}`}>{f.t}</h3>
+                  {/* 导语区固定高度：两张卡的第一条列表项从同一水平线开始 */}
+                  <div className="mt-3 min-h-[2rem]">
+                    {f.lead && <p className="text-[14px] font-medium leading-7 text-[#8a6d3f]">{f.lead}</p>}
+                  </div>
+                  <ul className="mt-4 space-y-3">
+                    {f.items.map((x) => (
+                      <li key={x} className={`flex gap-3 text-[15px] leading-7 ${i === 0 ? "text-neutral-700" : "text-neutral-300"}`}>
+                        <span className={i === 0 ? "text-[#b07d3c]" : "text-neutral-500"}>{i === 0 ? "✓" : "—"}</span>{x}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-14 border-t border-white/10 pt-12">
+            <Reveal>
+              <p className="text-[13px] font-medium uppercase tracking-[0.2em] text-[#d6b278]">What You Get</p>
+              <h2 className="font-display mt-3 text-[32px] leading-tight text-white md:text-[42px]">老板看得见的效果</h2>
+              <p className="mt-3 text-[14px] leading-7 text-neutral-400">内部降本、外部获客，投入产出算得清。</p>
             </Reveal>
-          ))}
-        </div>
-        <div className="mx-auto mt-10 max-w-6xl px-5 md:px-8">
-          <Link to="/work/fde" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[15px] font-medium text-neutral-900">看看这套方法交付了什么 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
+            <div className="mt-9 grid gap-5 md:grid-cols-3">
+              {EFFECTS.map((e, i) => (
+                <Reveal key={e.label} delay={i * 70}>
+                  <div className="flex h-full flex-col rounded-[28px] border border-white/10 bg-white/[0.04] p-7">
+                    <div className="flex items-center gap-3">
+                      <span className="font-display text-3xl leading-none text-[#d6b278]">{e.no}</span>
+                      <h3 className="text-lg font-semibold text-white">{e.label}</h3>
+                    </div>
+                    <p className="mt-4 flex-1 text-[14px] leading-7 text-neutral-300">{e.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12">
+            <Link to="/work/fde" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[15px] font-medium text-neutral-900">看看这套方法交付了什么 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
+          </div>
         </div>
       </section>
     </>
