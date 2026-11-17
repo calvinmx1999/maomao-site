@@ -6,3 +6,4 @@ _archive
 .vercel
 .env*
 *.log
+.env.local
