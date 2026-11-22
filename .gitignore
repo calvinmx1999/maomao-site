@@ -7,3 +7,5 @@ _archive
 .env*
 *.log
 .env.local
+部署/dist/
+部署/.wrangler/

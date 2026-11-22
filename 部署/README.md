@@ -1,6 +1,16 @@
-# 个人网站部署说明（calvinmx99.cn）
+# 部署说明（calvinmx99.cn）
 
-这个网站部署在 **Cloudflare Pages**，项目名 `maomao-site`，绑定域名 `calvinmx99.cn`（含 www 自动跳转）。
+这个文件夹是个人网站部署到 **Cloudflare Pages** 的全部相关文件：
+
+```
+部署/
+├── deploy.sh        一键部署脚本（从项目根目录运行 ./部署/deploy.sh）
+├── README.md        本说明
+├── functions/       Cloudflare 中间件（www 301 跳主域名），会随部署打包
+└── dist/            每次运行脚本时自动生成的「待上传内容」（构建产物副本）
+```
+
+网站部署在 Cloudflare Pages，项目名 `maomao-site`，绑定域名 `calvinmx99.cn`（含 www 自动跳转）。
 代码仓库：GitHub 私有库 `calvinmx1999/maomao-site`。
 
 ## 每次更新网站（最常用）
@@ -8,11 +18,11 @@
 改完代码后，在项目根目录的终端里运行：
 
 ```bash
-./deploy.sh
+./部署/deploy.sh
 ```
 
-脚本会自动：构建 → 让你输入 `y` 确认 → 部署 → 打印线上标题验证。
-看到 `完成 ✅` 后打开 https://calvinmx99.cn 检查即可（缓存原因可能要强刷一下：Cmd+Shift+R）。
+脚本会自动：构建 → 把待上传内容整理进本文件夹 → 让你输入 `y` 确认 → 部署 → 打印线上标题验证。
+看到 `完成 ✅` 后打开 https://calvinmx99.cn 检查即可（缓存原因可能要强刷：Cmd+Shift+R）。
 
 顺手提交代码存档（可选但建议）：
 
@@ -39,7 +49,7 @@ git add -A && git commit -m "更新说明" && git push
 | `maomao-site` | calvinmx99.cn | **这个个人网站** |
 | `menchuang-youzhang` | hubwindoor.com | 门窗有帐产品站（别往这里发） |
 
-手动部署时的命令（等价于 deploy.sh 的第 2 步）：
+手动部署时的命令（等价于 deploy.sh 的第 3 步，在本文件夹里执行）：
 
 ```bash
 npx vite build && npx wrangler pages deploy dist --project-name=maomao-site --branch=main --commit-dirty=true
@@ -54,7 +64,8 @@ npx vite build && npx wrangler pages deploy dist --project-name=maomao-site --br
 - **线上还是旧内容**：等 1 分钟，浏览器 Cmd+Shift+R 强刷；还不行就检查部署是不是发到了别的项目。
 - **Vercel 备份**：`maomao-site.vercel.app` 还留着，不用管它提示的域名失效警告。
 
-## 网站技术栈（给维护的人看）
+## 技术细节（给维护的人看）
 
-Vite + React 19 + TypeScript + Tailwind；纯静态 SPA，构建产物在 `dist/`。
-路由兜底：`public/_redirects`；www 301 跳主域名：`functions/_middleware.js`（Direct Upload 会自动打包）。
+- Vite + React 19 + TypeScript + Tailwind；纯静态 SPA，构建产物在根目录 `dist/`，脚本会复制到本文件夹再上传。
+- 路由兜底规则在项目根目录 `public/_redirects`（构建时自动进 dist）。
+- `functions/_middleware.js` 负责 www → 主域名 301；Cloudflare 的 `_redirects` 不支持域名级规则，所以用中间件实现。Direct Upload 会自动打包本文件夹下的 `functions/`。
